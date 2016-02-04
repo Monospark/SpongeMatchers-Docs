@@ -1,0 +1,5 @@
+==================
+User Documentation
+==================
+
+If you are using a Sponge plugin that uses SpongeMatchers and you want to make use of its powerful features, this is the right place for you.
