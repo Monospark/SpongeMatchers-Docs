@@ -7,5 +7,5 @@ If you are using a Sponge plugin that uses SpongeMatchers and you want to make u
 .. toctree::
    :maxdepth: 2
    
-   core
-   sponge
+   matchers
+   types
