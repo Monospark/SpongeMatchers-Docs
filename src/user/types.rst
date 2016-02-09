@@ -256,8 +256,8 @@ Map structure
 ========== ================================= ===========
 Parameter  Type                              Description
 ========== ================================= ===========
-type       :ref:`Block type <blocktypes>`     The block type.
-traits     :ref:`Block traits <blocktraits>` The traits of the block.
+type       :ref:`Block type <blocktypes>`    The block type.
+traits     Block traits                      The traits of the block.
 data       :ref:`Data <data>`                The additional data of the block, for example tile entity data. For a full reference, you can visit the `Minecraft wiki <http://minecraft.gamepedia.com/Tutorials/Command_NBT_Tags#Blocks>`_. This entry is not present if the block state has no additional data.
 ========== ================================= ===========
 
