@@ -15,7 +15,7 @@ Creating matchers
 =================
 
 For every object type, like integers or entities, there is a specific matcher syntax.
-You can find a full reference of all supported object types and their corresponding matcher syntax in the :ref:`Supported object types <types>` topic.
+You can find a full reference of all supported object types and their corresponding matcher syntax in the :doc:`Supported object types <types>` topic.
 Furthermore, there is a useful set of extra features that allow for flexible matcher creation:
 
 * *And* conjunctions

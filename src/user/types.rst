@@ -5,7 +5,7 @@ Object types
 Base Types
 ==========
 
-.. _boolean:
+.. _booleans:
 
 Booleans
 --------
@@ -13,7 +13,7 @@ Booleans
 A boolean can either be *true* or *false*.
 As a result, the two possible values a boolean matcher can have are ``true`` or ``false``.
 
-.. _integer:
+.. _integers:
 
 Integers
 --------
@@ -36,7 +36,7 @@ The following matcher constructs are supported:
 ``<= <value>``
   Matches, if the integer is less than or equal to *<value>*.
   
-.. _floating-point:  
+.. _floating-points:  
   
 Floating-point numbers
 ----------------------
@@ -62,7 +62,7 @@ Moreover, the following matcher constructs are supported:
 ``<= <value>``
   Matches, if the floating-point number is less than or equal to *<value>*.
   
-.. _string:
+.. _strings:
   
 Strings
 -------
@@ -86,7 +86,7 @@ Regular expression matchers
 Advanced types
 ==============
 
-.. _list:
+.. _lists:
 
 Lists
 -----
@@ -122,7 +122,7 @@ Empty list matchers
 :Usage: Matches, if the list contains no elements.
 :Example: ``none`` matches *[]* but not *[1]*.
 
-.. _map:
+.. _maps:
 
 Maps
 ----
@@ -139,7 +139,7 @@ Sponge types
 
 Sponge types are types that represent some object in Sponge, like an item stack or an entity.
 Since these types can be very diverse and complex, it would be hard to create an unique matcher syntax for every type.
-As a result, the Sponge types are converted to a :ref:`Map <map>`, which can then be matched using map matchers.
+As a result, the Sponge types are converted to a :ref:`Map <maps>`, which can then be matched using map matchers.
 
 Item stacks
 -----------
@@ -150,10 +150,10 @@ Map structure
 ========== ============================ ===========
 Key        Type                         Description
 ========== ============================ ===========
-type       :ref:`String <string>`       The item type. For example *minecraft:apple*.
-durability :ref:`Integer <integer>`     The durability of the stack. This value is used as a damage indicator for tools and to distinguish item variants, for example coal and charcoal.
-quantity   :ref:`Integer <integer>`     The amount of items in the stack.
-properties :ref:`Map <map>` of          The properties of the block type.
+type       :ref:`String <strings>`       The item type. For example *minecraft:apple*.
+durability :ref:`Integer <integers>`     The durability of the stack. This value is used as a damage indicator for tools and to distinguish item variants, for example coal and charcoal.
+quantity   :ref:`Integer <integers>`     The amount of items in the stack.
+properties :ref:`Map <maps>` of          The properties of the block type.
            properties (See table below)
 data       :ref:`Data <data>`           The additional data of the stack, for example enchantments, nametags and custom tags. For a full reference, you can visit the `<http://minecraft.gamepedia.com/Tutorials/Command_NBT_Tags#Items>`_. This entry is not present if the item stack has no additional data.
 ========== ============================ ===========
@@ -161,19 +161,19 @@ data       :ref:`Data <data>`           The additional data of the stack, for ex
 Available properties
 ^^^^^^^^^^^^^^^^^^^^
 
-========================= ====================================== ===========
-Name                      Type                                   Description
-========================= ====================================== ===========
-ArmorTypeProperty         :ref:`String <string>`
-BurningFuelProperty       :ref:`Integer <integer>`               Defines the amount of fuel ticks an item will grant to a furnace.
-DamageAbsorptionProperty  :ref:`Integer <integer>`               Defines the percentage of damage the item will absorb when equipped.
-EfficiencyProperty        :ref:`Floating point <floating-point>` Defines the efficiency qualifier of an item when mining harvestable blocks.
-EquipmentProperty         :ref:`String <string>`                 Defines the equipment type that the item can be used in an equipment inventory.
-FoodRestorationProperty   :ref:`Integer <integer>`               Defines how much the level will be restored when the item is consumed.
-SaturationProperty        :ref:`Floating point <floating-point>` Defines how much the item replenishes saturation upon use or consumption.
-ToolTypeProperty          :ref:`String <string>`                
-UseLimitProperty          :ref:`Integer <integer>`               Defines a limit on the number of uses on an item.
-========================= ====================================== ===========
+========================= ======================================= ===========
+Name                      Type                                    Description
+========================= ======================================= ===========
+ArmorTypeProperty         :ref:`String <strings>`
+BurningFuelProperty       :ref:`Integer <integers>`               Defines the amount of fuel ticks an item will grant to a furnace.
+DamageAbsorptionProperty  :ref:`Integer <integers>`               Defines the percentage of damage the item will absorb when equipped.
+EfficiencyProperty        :ref:`Floating point <floating-points>` Defines the efficiency qualifier of an item when mining harvestable blocks.
+EquipmentProperty         :ref:`String <strings>`                 Defines the equipment type that the item can be used in an equipment inventory.
+FoodRestorationProperty   :ref:`Integer <integers>`               Defines how much the level will be restored when the item is consumed.
+SaturationProperty        :ref:`Floating point <floating-points>` Defines how much the item replenishes saturation upon use or consumption.
+ToolTypeProperty          :ref:`String <strings>`                
+UseLimitProperty          :ref:`Integer <integers>`               Defines a limit on the number of uses on an item.
+========================= ======================================= ===========
 
 Matcher examples
 ^^^^^^^^^^^^^^^^
@@ -187,12 +187,12 @@ Item enchantments
 Map structure
 ^^^^^^^^^^^^^
 
-========== ======================== ===========
-Parameter  Type                     Description
-========== ======================== ===========
-id         :ref:`String <string>`   The enchantment id. For example *minecraft:efficiency*.
-level      :ref:`Integer <integer>` The level of the enchantment.
-========== ======================== ===========
+========== ========================= ===========
+Parameter  Type                      Description
+========== ========================= ===========
+id         :ref:`String <strings>`   The enchantment id. For example *minecraft:efficiency*.
+level      :ref:`Integer <integers>` The level of the enchantment.
+========== ========================= ===========
 
 Matcher examples
 ^^^^^^^^^^^^^^^^
@@ -200,7 +200,7 @@ Matcher examples
 * ``{'id': 'minecraft:unbreaking'}`` matches any *Unbreaking* enchantment.
 * ``{'id': 'minecraft:fortune' | 'minecraft:efficiency', 'level': >1}`` matches any *Fortune* or *Efficiency* enchantment with a level bigger than *1*.
 
-.. _blocktype:
+.. _blocktypes:
 
 Block types
 -----------
@@ -208,38 +208,38 @@ Block types
 Map structure
 ^^^^^^^^^^^^^
 
-========== ============================== ===========
-Parameter  Type                           Description
-========== ============================== ===========
-id         :ref:`String <string>`         The block type id. For example *minecraft:stone*.
-properties :ref:`Map <map>` of properties The properties of the block type.
+========== =============================== ===========
+Parameter  Type                            Description
+========== =============================== ===========
+id         :ref:`String <strings>`         The block type id. For example *minecraft:stone*.
+properties :ref:`Map <maps>` of properties The properties of the block type.
            (See table below)
-========== ============================== ===========
+========== =============================== ===========
 
 Available properties
 ^^^^^^^^^^^^^^^^^^^^
 
-========================= ====================================== ===========
-Name                      Type                                   Description
-========================= ====================================== ===========
-BlastResistanceProperty   :ref:`Floating point <floating-point>`
-FlammableProperty         :ref:`Boolean <boolean>`               Defines whether a block is able to catch fire.
-GravityAffectedProperty   :ref:`Boolean <boolean>`               Defines whether a block type is affected by "gravity" such that if a block is placed and there is no block supporting it, the block will fall.
-GroundLuminanceProperty   :ref:`Floating point <floating-point>` Defines the amount of light on a block location.
-HardnessProperty          :ref:`Floating point <floating-point>`
-HeldItemProperty          :ref:`Boolean <boolean>`
-IndirectlyPoweredProperty :ref:`Boolean <boolean>`
-LightEmissionProperty     :ref:`Integer <integer>`               Defines the amount of light emitted from the owning block.
-MatterProperty            :ref:`String <string>`
-PassableProperty          :ref:`Boolean <boolean>`
-PoweredProperty           :ref:`Boolean <boolean>`
-ReplaceableProperty       :ref:`Boolean <boolean>`               Defines if a block type can be replaced by other block types when other blocks are being placed.
-SkyLuminanceProperty      :ref:`Floating point <floating-point>` Defines the amount of light emitted from the owning block.
-SolidCubeProperty         :ref:`Boolean <boolean>`               Defines whether a block type is a "solid cube" and therefore can be considered to place a torch on its side.
-StatisticsTrackedProperty :ref:`Boolean <boolean>`
-TemperatureProperty       :ref:`Floating point <floating-point>`
-UnbreakableProperty       :ref:`Boolean <boolean>`
-========================= ====================================== ===========
+========================= ======================================= ===========
+Name                      Type                                    Description
+========================= ======================================= ===========
+BlastResistanceProperty   :ref:`Floating point <floating-points>`
+FlammableProperty         :ref:`Boolean <booleans>`               Defines whether a block is able to catch fire.
+GravityAffectedProperty   :ref:`Boolean <booleans>`               Defines whether a block type is affected by "gravity" such that if a block is placed and there is no block supporting it, the block will fall.
+GroundLuminanceProperty   :ref:`Floating point <floating-points>` Defines the amount of light on a block location.
+HardnessProperty          :ref:`Floating point <floating-points>`
+HeldItemProperty          :ref:`Boolean <booleans>`
+IndirectlyPoweredProperty :ref:`Boolean <booleans>`
+LightEmissionProperty     :ref:`Integer <integers>`               Defines the amount of light emitted from the owning block.
+MatterProperty            :ref:`String <strings>`
+PassableProperty          :ref:`Boolean <booleans>`
+PoweredProperty           :ref:`Boolean <booleans>`
+ReplaceableProperty       :ref:`Boolean <booleans>`               Defines if a block type can be replaced by other block types when other blocks are being placed.
+SkyLuminanceProperty      :ref:`Floating point <floating-points>` Defines the amount of light emitted from the owning block.
+SolidCubeProperty         :ref:`Boolean <booleans>`               Defines whether a block type is a "solid cube" and therefore can be considered to place a torch on its side.
+StatisticsTrackedProperty :ref:`Boolean <booleans>`
+TemperatureProperty       :ref:`Floating point <floating-points>`
+UnbreakableProperty       :ref:`Boolean <booleans>`
+========================= ======================================= ===========
 
 Matcher examples
 ^^^^^^^^^^^^^^^^
@@ -256,7 +256,7 @@ Map structure
 ========== ================================= ===========
 Parameter  Type                              Description
 ========== ================================= ===========
-type       :ref:`Block type <blocktype>`     The block type.
+type       :ref:`Block type <blocktypes>`     The block type.
 traits     :ref:`Block traits <blocktraits>` The traits of the block.
 data       :ref:`Data <data>`                The additional data of the block, for example tile entity data. For a full reference, you can visit the `Minecraft wiki <http://minecraft.gamepedia.com/Tutorials/Command_NBT_Tags#Blocks>`_. This entry is not present if the block state has no additional data.
 ========== ================================= ===========
@@ -285,12 +285,12 @@ NBT tags are used to store the data of everything in Minecraft, for example the 
 Possible value types
 ^^^^^^^^^^^^^^^^^^^^
 
-* :ref:`Booleans <boolean>`
-* :ref:`Integers <integer>`
-* :ref:`Floating points <floating-point>`
-* :ref:`Strings <string>`
+* :ref:`Booleans <booleans>`
+* :ref:`Integers <integers>`
+* :ref:`Floating points <floating-points>`
+* :ref:`Strings <strings>`
 * :ref:`Data <data>`
-* :ref:`Lists <list>` of every type listed above
+* :ref:`Lists <lists>` of every type listed above
 
 Examples
 ^^^^^^^^
