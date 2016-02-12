@@ -5,6 +5,8 @@ Object types
 Base Types
 ==========
 
+Base types are the basic building blocks of every more advanced type.
+
 .. _booleans:
 
 Booleans
