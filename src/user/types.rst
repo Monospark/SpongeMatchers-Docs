@@ -123,6 +123,23 @@ Empty list matchers
 :Syntax: ``[]``
 :Usage: Matches, if the list contains no elements.
 
+.. _optionals:
+
+Optionals
+---------
+
+Optionals wrap around other types and indicate that the value may not be present.
+There are three ways to match optional types:
+
+``absent``
+  Matches, if the value is not present.
+
+``existent``
+  Matches, if the value is present.
+
+``<matcher>``
+  Matches, if the value is present and <matcher> matches the value.
+
 .. _maps:
 
 Maps
@@ -132,7 +149,7 @@ Maps associate keys with values.
 You can match maps using the following matcher construct:
 
 :Syntax: ``{'<key1>': <matcher1>, '<key2>': <matcher2>, ...}``
-:Usage: Matches, if the matcher of every key matches the associated value for that key in the map. You can use *absent* to match non-existent values.
+:Usage: Matches, if the matcher of every key matches the associated value for that key in the map.
 :Example: ``{'entry1': false, 'entry2:' >=2 | absent}`` matches the map *{'entry1':false}*, *{'entry1':false, 'entry2:' 5}* and also *{'entry1':false, 'entry2:' 5, 'entry3': 'string'}*.
 
 Sponge types
@@ -163,6 +180,12 @@ height           :ref:`Integer <integers>` The highest naturally generated y-coo
 buildHeight      :ref:`Integer <integers>` The maximum y-coordinate a non-air cuboid can exist at in the dimension. Usually 256.
 ================ ========================= ===========
 
+Matcher examples
+^^^^^^^^^^^^^^^^
+
+* ``{'name': 'nether'}`` matches the *nether* dimension.
+* ``{'respawnAllowed': 'false', 'sky': true}`` matches any dimension that has a sky and denies player respawns.
+
 .. _worlds:
 
 Worlds
@@ -171,14 +194,20 @@ Worlds
 Map structure
 ^^^^^^^^^^^^^
 
-========= =============================== ===========
-Key       Value type                      Description
-========= =============================== ===========
-name      :ref:`String <strings>`         The world name.
-dimension :ref:`Dimension <dimensions>`   The dimension.
-seed      :ref:`Integer <integers>`       The world seed.
-gameRules :ref:`Map <maps>` of game rules The game rules that are active in the world. A full list of game rules can be found at the `gamerule command reference <http://minecraft.gamepedia.com/Command#gamerule>`_.
-========= =============================== ===========
+========= ============================================= ===========
+Key       Value type                                    Description
+========= ============================================= ===========
+name      :ref:`String <strings>`                       The world name.
+dimension :ref:`Dimension <dimensions>`                 The dimension.
+seed      :ref:`Integer <integers>`                     The world seed.
+gameRules :ref:`Map <maps>` of :ref:`Strings <strings>` The game rules that are active in the world. A full list of game rules can be found at the `gamerule command reference <http://minecraft.gamepedia.com/Command#gamerule>`_.
+========= ============================================= ===========
+
+Matcher examples
+^^^^^^^^^^^^^^^^
+
+* ``{'name': 'myworld', 'dimension': {'name': 'overworld'}}`` matches overworld worlds called *myworld*.
+* ``{'dimension': {'name': 'nether'}, 'gameRules': {'doMobLoot': false}}`` matches any nether world in which mobs drops are disabled.
 
 .. _block-locations:
 
@@ -199,6 +228,12 @@ z     :ref:`Integer <integers>` The z-coordinate.
 world :ref:`World <worlds>`     The world.
 ===== ========================= ===========
 
+Matcher examples
+^^^^^^^^^^^^^^^^
+
+* ``{'x': >100}`` matches any block location that has an x-coordinate bigger than *100*.
+* ``{'x': 1, 'y': 2, 'z': 3, 'world': {'name': 'myworld'}}`` matches the block location *(1,2,3)* in the world *myworld*.
+
 .. _exact-locations:
 
 Exact locations
@@ -213,8 +248,37 @@ Key   Value type                              Description
 x     :ref:`Floating point <floating-points>` The x-coordinate.
 y     :ref:`Floating point <floating-points>` The y-coordinate.
 z     :ref:`Floating point <floating-points>` The z-coordinate.
-world :ref:`World <worlds>`     The world.
+world :ref:`World <worlds>`                   The world.
 ===== ======================================= ===========
+
+Matcher examples
+^^^^^^^^^^^^^^^^
+
+* ``{'y': <20f}`` matches any block location that has an x-coordinate smaller than *20.0*.
+* ``{'x': 10f, 'y': -2f, 'z': 3f, 'world': {'name': 'myworld'}}`` matches the block location *(10.0,-2.0,33.0)* in the world *myworld*.
+
+.. _data:
+
+Data
+----
+
+Data types correspond to the `NBT tags <http://minecraft.gamepedia.com/Tutorials/Command_NBT_Tags?cookieSetup=true>`_ in Minecraft.
+NBT tags are used to store the data of everything in Minecraft, for example the data of an item stack or an entity.
+
+Possible value types
+^^^^^^^^^^^^^^^^^^^^
+
+* :ref:`Booleans <booleans>`
+* :ref:`Integers <integers>`
+* :ref:`Floating points <floating-points>`
+* :ref:`Strings <strings>`
+* :ref:`Data <data>`
+* :ref:`Lists <lists>` of every type listed above
+
+Examples
+^^^^^^^^
+
+* ``{'ench': [{'id': 'minecraft:fortune', 'lvl': 2}, {'id': 'minecraft:fortune', 'lvl': 1}]}`` matches the additional data of an item stack if the stack has the two specified enchantments.
 
 .. _item-stacks:
 
@@ -224,20 +288,22 @@ Item stacks
 Map structure
 ^^^^^^^^^^^^^
 
-========== ================================================= ===========
-Key        Value type                                        Description
-========== ================================================= ===========
-type       :ref:`String <strings>`                           The item type. For example *minecraft:apple*.
-durability :ref:`Integer <integers>`                         The durability of the stack. This value is used as a damage indicator for tools and to distinguish item variants, for example coal and charcoal.
-quantity   :ref:`Integer <integers>`                         The amount of items in the stack.
-properties :ref:`Map <maps>` of properties                   The properties of the block type.
-           (See table below)
-data       :ref:`Data <data>`                                The additional data of the stack, for example enchantments, nametags and custom tags. For a full reference, you can visit the `<http://minecraft.gamepedia.com/Tutorials/Command_NBT_Tags#Items>`_.
-                                                             This entry is not present if the item stack has no additional data.
-========== ================================================= ===========
+========== ================================================ ===========
+Key        Value type                                       Description
+========== ================================================ ===========
+type       :ref:`String <strings>`                          The item type. For example *minecraft:apple*.
+durability :ref:`Integer <integers>`                        The durability of the stack. This value is used as a damage indicator for tools and to distinguish item variants, for example coal and charcoal.
+quantity   :ref:`Integer <integers>`                        The amount of items in the stack.
+properties :ref:`Map <maps>` of :ref:`Strings <strings>`    The properties of the block type. For a list of all possible properties, see the table below.
+data       :ref:`Data <data>` (:ref:`Optional <optionals>`) The additional data of the stack, for example enchantments, nametags and custom tags. For a full reference, you can visit the `<http://minecraft.gamepedia.com/Tutorials/Command_NBT_Tags#Items>`_.
+                                                            This value is not present if the item stack has no additional data.
+========== ================================================ ===========
 
 Available properties
 ^^^^^^^^^^^^^^^^^^^^
+
+All property values are :ref:`Optionals <optionals>`.
+If a property does not apply for an item stack, it is not present.
 
 ================= ======================================= ===========
 Name              Value type                              Description
@@ -286,16 +352,18 @@ Block types
 Map structure
 ^^^^^^^^^^^^^
 
-========== =============================== ===========
-Key        Value type                      Description
-========== =============================== ===========
-id         :ref:`String <strings>`         The block type id. For example *minecraft:stone*.
-properties :ref:`Map <maps>` of properties The properties of the block type.
-           (See table below)
-========== =============================== ===========
+========== ============================================= ===========
+Key        Value type                                    Description
+========== ============================================= ===========
+id         :ref:`String <strings>`                       The block type id. For example *minecraft:stone*.
+properties :ref:`Map <maps>` of :ref:`Strings <strings>` The properties of the block type. For a list of all possible properties, see the table below.
+========== ============================================= ===========
 
 Available properties
 ^^^^^^^^^^^^^^^^^^^^
+
+All property values are :ref:`Optionals <optionals>`.
+If a property does not apply for a block type, it is not present.
 
 ================= ======================================= =======================================================================================================================================================================================
 Name              Value type                              Description
@@ -331,13 +399,13 @@ Block states
 Map structure
 ^^^^^^^^^^^^^
 
-========== ================================= ===========
-Key        Value type                        Description
-========== ================================= ===========
-type       :ref:`Block type <blocktypes>`    The block type.
-traits     Block traits                      The traits of the block.
-data       :ref:`Data <data>`                The additional data of the block, for example tile entity data. For a full reference, you can visit the `Minecraft wiki <http://minecraft.gamepedia.com/Tutorials/Command_NBT_Tags#Blocks>`_. This entry is not present if the block state has no additional data.
-========== ================================= ===========
+========== ============================================= ===========
+Key        Value type                                    Description
+========== ============================================= ===========
+type       :ref:`Block type <blocktypes>`                The block type.
+traits     :ref:`Map <maps>` of :ref:`Strings <strings>` The traits of the block. All block traits are :ref:`Optionals <optionals>`. If a block trait does not apply for an item stack, it is not present.
+data       :ref:`Data <data>`                            The additional data of the block, for example tile entity data. For a full reference, you can visit the `Minecraft wiki <http://minecraft.gamepedia.com/Tutorials/Command_NBT_Tags#Blocks>`_. This entry is not present if the block state has no additional data.
+========== ============================================= ===========
 
 Matcher examples
 ^^^^^^^^^^^^^^^^
@@ -355,18 +423,25 @@ Entities encompass all dynamic, moving objects throughout the Minecraft world.
 Map structure
 ^^^^^^^^^^^^^
 
-=========== ======================================= ===========
-Key         Value type                              Description
-=========== ======================================= ===========
-type        :ref:`String <strings>`                 The entity type. A list of all entity types can be found at on the `entity IDs wiki page <http://minecraft.gamepedia.com/Data_values/Entity_IDs>`_ where the *Savegame ID* defines the entity type.
-location    :ref:`Exact location <exact-locations>` The current location.
-rotX        :ref:`Floating point <floating-points>` The rotation around the x-axis.
-rotY        :ref:`Floating point <floating-points>` The rotation around the y-axis.
-rotZ        :ref:`Floating point <floating-points>` The rotation around the z-axis.
-vehicle     :ref:`Entity <entities>`                The entity that the entity is riding. This value is not present if the entity is not riding any vehicle.
-passenger   :ref:`Entity <entities>`                The entity passenger that rides the entity. This value is not present if there is no entity riding on the entity any vehicle.
-baseVehicle :ref:`Entity <entities>`                The entity vehicle that is the base of what ever stack the current entity is a part of. This can be the current entity, if it is not riding any vehicle. 
-=========== ======================================= ===========
+=========== ====================================================== ===========
+Key         Value type                                             Description
+=========== ====================================================== ===========
+type        :ref:`String <strings>`                                The entity type. A list of all entity types can be found at on the `entity ID list <http://minecraft-ids.grahamedgecombe.com/entities>`_.
+location    :ref:`Exact location <exact-locations>`                The current location.
+rotX        :ref:`Floating point <floating-points>`                The rotation around the x-axis.
+rotY        :ref:`Floating point <floating-points>`                The rotation around the y-axis.
+rotZ        :ref:`Floating point <floating-points>`                The rotation around the z-axis.
+vehicle     :ref:`Entity <entities>` (:ref:`Optional <optionals>`) The entity that the current entity is riding. This value is not present if the entity is not riding any vehicle.
+passenger   :ref:`Entity <entities>` (:ref:`Optional <optionals>`) The entity passenger that rides the entity. This value is not present if there is no entity riding on the entity any vehicle.
+baseVehicle :ref:`Entity <entities>`                               The entity vehicle that is the base of what ever stack the current entity is a part of. This can be the current entity, if it is not riding any vehicle. 
+=========== ====================================================== ===========
+
+Matcher examples
+^^^^^^^^^^^^^^^^
+
+* ``{'type': 'Creeper' | 'Skeleton' | 'Zombie' | 'Spider' | 'Enderman'}`` matches all normal-spawning and hostile mobs.
+* ``{'type': 'Player', 'vehicle': {'type': 'Minecart' | 'Boat'}}`` matches players that are currently in a minecart or a boat.
+* ``{'type': 'Spider', 'location': {'y': >62}'passenger': {'type': 'Skeleton'}}`` matches spiders that have a skeleton riding on them and currently located above the sea level.
 
 .. _living-entities:
 
@@ -386,6 +461,12 @@ health      :ref:`Floating point <floating-points>` The current health amount.
 maxHealth   :ref:`Floating point <floating-points>` The current maximum health amount. 
 =========== ======================================= ===========
 
+Matcher examples
+^^^^^^^^^^^^^^^^
+
+* ``{'type': 'Zombie', 'health': >10f}`` matches zombies that have more than 5 hearts of health.
+* ``{'maxHealth': '20f'}`` matches all living entities that can have 10 hearts of health.
+
 Players
 -------
 
@@ -394,47 +475,24 @@ The player type inherits all properties from the :ref:`living entity type<living
 Additional map structure
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-=========== =========================================== ===========
-Key         Value type                                  Description
-=========== =========================================== ===========
-name        :ref:`String <strings>`                     The player name.
-uuid        :ref:`String <strings>`                     The player UUID.
-permissions :ref:`Boolean <booleans>` :ref:`map <maps>` All current applicable permissions. If the value for a specific permission is true, then the permission is explicitly granted. If it is false, then the permission is explicitly denied. If the map does not contain a specific permission, then it is not set.
-gamemode    :ref:`String <strings>`                     The current gamemode. Can be *survival*, *creative*, *adventure* or *spectator*.
-helmet      :ref:`Item stack <item-stacks>`             The currently worn helmet. If there is none, this value entry is not present.
-chestplate  :ref:`Item stack <item-stacks>`             The currently worn chestplate. If there is none, this value entry is not present.
-leggings    :ref:`Item stack <item-stacks>`             The currently worn leggings. If there is none, this value entry is not present.
-boots       :ref:`Item stack <item-stacks>`             The currently worn boots. If there is none, this value entry is not present.
-itemInHand  :ref:`Item stack <item-stacks>`             The item stack that the player has in his hand. If there is none, this value entry is not present.
-=========== =========================================== ===========
+=========== ================================================================================= ===========
+Key         Value type                                                                        Description
+=========== ================================================================================= ===========
+name        :ref:`String <strings>`                                                           The player name.
+uuid        :ref:`String <strings>`                                                           The player UUID.
+permissions :ref:`Map <maps>` of :ref:`Booleans <booleans>`                                   All current applicable permissions. If the value for a specific permission is true, then the permission is explicitly granted. If it is false, then the permission is explicitly denied. If the map does not contain a specific permission, then it is not set.
+gamemode    :ref:`String <strings>`                                                           The current gamemode. Can be *survival*, *creative*, *adventure* or *spectator*.
+helmet      :ref:`Item stack <item-stacks>` (:ref:`Optional <optionals>`)                     The currently worn helmet. If there is none, this value entry is not present.
+chestplate  :ref:`Item stack <item-stacks>` (:ref:`Optional <optionals>`)                     The currently worn chestplate. If there is none, this value entry is not present.
+leggings    :ref:`Item stack <item-stacks>` (:ref:`Optional <optionals>`)                     The currently worn leggings. If there is none, this value entry is not present.
+boots       :ref:`Item stack <item-stacks>` (:ref:`Optional <optionals>`)                     The currently worn boots. If there is none, this value entry is not present.
+itemInHand  :ref:`Item stack <item-stacks>` (:ref:`Optional <optionals>`)                     The item stack that the player currently has in his hand. If there is none, this value entry is not present.
+=========== ================================================================================= ===========
 
-Undefined types
----------------
+Matcher examples
+^^^^^^^^^^^^^^^^
 
-Undefined types do not have predefined key names and predefined value types.
-Instead, every possible key is allowed and the type of a value is restricted to a list of types for every undefined type. 
-
-.. _data:
-
-Data
-----
-
-Data types correspond to the `NBT tags <http://minecraft.gamepedia.com/Tutorials/Command_NBT_Tags?cookieSetup=true>`_ in Minecraft.
-NBT tags are used to store the data of everything in Minecraft, for example the data of an item stack or an entity.
-
-Possible value types
-^^^^^^^^^^^^^^^^^^^^
-
-* :ref:`Booleans <booleans>`
-* :ref:`Integers <integers>`
-* :ref:`Floating points <floating-points>`
-* :ref:`Strings <strings>`
-* :ref:`Data <data>`
-* :ref:`Lists <lists>` of every type listed above
-
-Examples
-^^^^^^^^
-
-* ``{'ench': [{'id': 'minecraft:fortune', 'lvl': 2}, {'id': 'minecraft:fortune', 'lvl': 1}]}`` matches the additional data of an item stack if the stack has the two specified enchantments.
-
-.. _properties:
+* ``{'type': 'Notch'}`` matches the player *Notch*.
+* ``{'permissions': {'somePlugin.admin': true} | {'somePlugin.somePermission': 'true'}}`` matches players that have either an admin permission or a specific permission for a plugin.
+* ``{'helmet': {'type': 'minecraft:diamond_helmet'}, 'chestplate': {'type': 'minecraft:diamond_chestplate'}, 'leggings': {'type': 'minecraft:diamond_leggings'}, 'boots': {'type': 'minecraft:diamond_boots'}}`` matches players that have full diamond armor equipped.
+* ``{'gamemode': 'survival', 'itemInHand': {'properties': {'burningFuel': existent}}}`` matches players that have a burnable item in their hand.

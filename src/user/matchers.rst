@@ -9,7 +9,7 @@ Matchers are used to check if an object meets some specific requirements.
 It is possible to create matchers for almost any object type.
 For example, the integer matcher *>2* matches all integers that are greater than 2.
 Using simple matchers like integer matchers as building blocks, it is possible to create more advanced matchers, for example item stack matchers or entity matchers.
-The goal of this documentation is to show you how to do that.
+This user documentation will show you how to do that.
 
 Creation
 ========

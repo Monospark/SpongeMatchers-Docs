@@ -54,7 +54,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'SpongeMatchers Documentation'
+project = 'SpongeMatchers'
 copyright = '2016, Christopher Schnick'
 author = 'Christopher Schnick'
 
@@ -230,7 +230,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'SpongeMatchers.tex', 'SpongeMatchers Documentation',
+  (master_doc, 'SpongeMatchers.tex', 'SpongeMatchers',
    'Christopher Schnick', 'manual'),
 ]
 
