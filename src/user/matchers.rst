@@ -26,7 +26,7 @@ Furthermore, there is a useful set of extra features that allow for flexible mat
 * *Or* conjunctions
     :Syntax: ``<matcher1> | <matcher2>``
     :Usage: Matches, if either *<matcher1>* or *<matcher2>* match.
-    :Example: ``1 | 5`` matches *1* and *5*.
+    :Example: ``1 | 5`` matches if the integer is either *1* or *5*.
 
 * Negations
     :Syntax: ``!<matcher>``
@@ -40,4 +40,4 @@ Furthermore, there is a useful set of extra features that allow for flexible mat
 
 * Wildcard matchers
     :Syntax: ``*``
-    :Usage: Matches always.
+    :Usage: Matches everything.
