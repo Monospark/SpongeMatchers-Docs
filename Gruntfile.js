@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 
     watch: {
       sphinx: {
-        files: ['src/**/*.rst'],
+        files: ['src/**/*'],
         tasks: ['exec:sphinx']
       },
 
