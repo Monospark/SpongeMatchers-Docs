@@ -23,7 +23,7 @@ The config file would look like this::
   denyEnchanting: "{'id': minecraft:unbreaking, 'level': >1}"
   
 As you can see, matchers are very powerful and also easy to understand.   
-For a full tutorial about matchers and a matcher reference, you can read the :doc:`user documentation </user/index>`.
+For a full tutorial about matchers and a matcher reference, you can read the previous pages of the documentation.
 
 Getting SpongeMatchers
 ======================
