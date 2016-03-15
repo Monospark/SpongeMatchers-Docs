@@ -344,7 +344,7 @@ Matcher examples
 * ``{'id': 'minecraft:unbreaking'}`` matches any *Unbreaking* enchantment.
 * ``{'id': 'minecraft:fortune' | 'minecraft:efficiency', 'level': >1}`` matches any *Fortune* or *Efficiency* enchantment with a level bigger than *1*.
 
-.. _blocktypes:
+.. _block-types:
 
 Block types
 -----------
@@ -393,6 +393,8 @@ Matcher examples
 * ``{'id': 'minecraft:stone'}`` matches the block type *minecraft:stone*.
 * ``{'id': r'minecraft:.+', 'properties': {'GravityAffectedProperty': true}}`` matches all vanilla blocks which are affected by gravity, for example *minecraft:sand*.
 
+.. _block-states:
+
 Block states
 ------------
 
@@ -402,7 +404,7 @@ Map structure
 ========== ============================================= ===========
 Key        Value type                                    Description
 ========== ============================================= ===========
-type       :ref:`Block type <blocktypes>`                The block type.
+type       :ref:`Block type <block-types>`                The block type.
 traits     :ref:`Map <maps>` of :ref:`Strings <strings>` The traits of the block. All block traits are :ref:`Optionals <optionals>`. If a block trait does not apply for an item stack, it is not present.
 data       :ref:`Data <data>`                            The additional data of the block, for example tile entity data. For a full reference, you can visit the `Minecraft wiki <http://minecraft.gamepedia.com/Tutorials/Command_NBT_Tags#Blocks>`_. This entry is not present if the block state has no additional data.
 ========== ============================================= ===========
@@ -412,6 +414,27 @@ Matcher examples
 
 * ``{'type': {'id': 'minecraft:planks'}, 'traits': {'variant': 'birch'}}`` matches only birch planks.
 * ``{'type': {'id': 'minecraft:chest'}, 'data': {'CustomName': 'MyChest'}}`` matches chests that have been renamed to *MyChest*.
+
+.. _blocks:
+
+Blocks
+------
+
+Map structure
+^^^^^^^^^^^^^
+
+========== ======================================= ===========
+Key        Value type                              Description
+========== ======================================= ===========
+state      :ref:`Block state <block-states>`       The block state.
+location   :ref:`Block location <block-locations>` The block location.
+========== ======================================= ===========
+
+Matcher examples
+^^^^^^^^^^^^^^^^
+
+* ``{'state': {'type': {'id': 'minecraft:planks'}, 'traits': {'variant': 'birch'}}, 'location': {'y': >62}}`` matches birch planks above the sea level.
+* ``{'state': {'type': {'id': r'minecraft:.*'}}, 'location': {'x': 1, 'y': 1, 'z': 1}}`` matches the block at *(1,1,1)* if it is a vanilla block.
 
 .. _entities:
 
