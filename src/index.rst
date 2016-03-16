@@ -4,28 +4,31 @@ SpongeMatchers Documentation
 
 Welcome to the documentation of `SpongeMatchers <https://github.com/monospark/spongematchers>`_.
 
-Contents
-========
-
 User documentation
-------------------
+==================
 
 The user documentation will introduce you to matchers and show you how to make good use of them.
 
+Contents
+--------
+
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    
    matchers
    types
    
 Developer documentation
------------------------
+=======================
    
 If you are a plugin developer and want to use SpongeMatchers in your plugin or want to contribute to this project, you can take a look at the developer documentation.
 It is recommened to read the user documentation first to familiarize yourself with the basic concepts.
    
+Contents
+--------
+   
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    
    usage
    contributing
