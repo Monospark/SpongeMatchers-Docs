@@ -11,8 +11,8 @@ For example, the integer matcher *>2* matches all integers that are greater than
 Using simple matchers like integer matchers as building blocks, it is possible to create more advanced matchers, for example item stack matchers or entity matchers.
 This user documentation will show you how to do that.
 
-Creation
-========
+Matcher creation
+================
 
 For every object type, like integers or entities, there is a specific matcher syntax.
 You can find a full reference of all supported object types and their corresponding matcher syntax in the :doc:`Object types <types>` topic.
