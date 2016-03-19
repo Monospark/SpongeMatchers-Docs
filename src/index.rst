@@ -21,8 +21,8 @@ Contents
 Developer documentation
 =======================
    
-If you are a plugin developer and want to use SpongeMatchers in your plugin or want to contribute to this project, you can take a look at the developer documentation.
-It is recommened to read the user documentation first to familiarize yourself with the basic concepts.
+If you are a plugin developer and interested in using SpongeMatchers in your plugin, you can take a look at the developer documentation.
+It is recommended to read the user documentation first to familiarize yourself with the basic concepts.
    
 Contents
 --------
@@ -30,14 +30,13 @@ Contents
 .. toctree::
    :maxdepth: 2
    
-   usage
-   contributing
+   plugins
    
 Getting Support
 ===============
 
 If you need some help or something is not working correctly, which is very likely since this project is in an very early stage, you can always ask for help or report a bug at the following locations:
 
-* The topic of this plugin in the Sponge Forums <TODO>
-* The SpongeMatchers category in the `Monospark Forums <https://forums.monospark.org/c/spongematchers>`_.
-* The SpongeMatchers issue tracker on `GitHub <https://github.com/monospark/spongematchers/issues>`_
+* The SpongeMatchers topic in the Sponge Forums <TODO>
+* The `SpongeMatchers category <https://forums.monospark.org/c/spongematchers>`_ in the Monospark forums
+* The `SpongeMatchers issue tracker <https://github.com/monospark/spongematchers/issues>`_ on GitHub
