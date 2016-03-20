@@ -62,7 +62,7 @@ You can achieve this by using the `Gradle shadow plugin <https://github.com/john
 Parsing matchers
 ================
 
-Before you start parsing matchers, make sure that you've already read the `matcher documentation <https://docs.monospark.org/spongematchers/matchers.html>`_.
+Before you start parsing matchers, make sure that you've already read the :doc:`matcher documentation <matchers>`.
 Matchers are usually parsed from a string that has been read from a config file.
 First, you have to convert the string into a *StringElement* object.
 
