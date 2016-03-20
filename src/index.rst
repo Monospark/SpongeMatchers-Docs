@@ -38,6 +38,6 @@ Getting Support
 
 If you need some help or something is not working correctly, which is very likely since this project is in an very early stage, you can always ask for help or report a bug at the following locations:
 
-* The SpongeMatchers topic in the Sponge Forums <TODO>
+* The `SpongeMatchers topic <https://forums.spongepowered.org/t/spongematchers-a-library-that-makes-plugin-development-easier-v1-1/11927>`_ in the Sponge Forums
 * The `SpongeMatchers category <https://forums.monospark.org/c/spongematchers>`_ in the Monospark forums
 * The `SpongeMatchers issue tracker <https://github.com/monospark/spongematchers/issues>`_ on GitHub
