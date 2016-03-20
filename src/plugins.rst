@@ -101,7 +101,7 @@ The following examples summarize the previously covered topics of parsing matche
     SpongeMatcher<List<Boolean>> booleanListMatcher = MatcherType.list(MatcherType.BOOLEAN).parseMatcher(element2);
     boolean matchesBooleanList = booleanListMatcher.matches(someBoolean);
   
-    StringElement element3 = StringElementParser.parseStringElement("{'id': r'minecraft:.+'} | empty")
+    StringElement element3 = StringElementParser.parseStringElement("{'id': r'minecraft:.+'} | absent")
     SpongeMatcher<Optional<ItemStack>> optionalItemStackMatcher = MatcherType.optional(MatcherType.ITEM_STACK).parseMatcher(element3);
     boolean matchesOptionalItemStack = optionalItemStackMatcher.matches(someOptionalItemStack);
   

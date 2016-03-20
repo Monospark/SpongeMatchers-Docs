@@ -8,6 +8,7 @@ User documentation
 ==================
 
 The user documentation will introduce you to matchers and show you how to make good use of them.
+This section is primarily intended for users of a plugin that uses SpongeMatchers.
 
 Contents
 --------
