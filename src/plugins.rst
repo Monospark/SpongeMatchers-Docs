@@ -39,7 +39,7 @@ You can do this by adding the following to your build.gradle::
   repositories {
       mavenCentral()
       maven {
-          url "http://repo.monospark.org"
+          url "https://repo.monospark.org/content/groups/public/"
       }
   }
 
