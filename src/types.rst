@@ -391,7 +391,7 @@ Matcher examples
 ^^^^^^^^^^^^^^^^
 
 * ``{'id': 'minecraft:stone'}`` matches the block type *minecraft:stone*.
-* ``{'id': r'minecraft:.+', 'properties': {'GravityAffectedProperty': true}}`` matches all vanilla blocks which are affected by gravity, for example *minecraft:sand*.
+* ``{'id': r'minecraft:.+', 'properties': {'gravityAffected': true}}`` matches all vanilla blocks which are affected by gravity, for example *minecraft:sand*.
 
 .. _block-states:
 
