@@ -449,7 +449,7 @@ Map structure
 =========== ====================================================== ===========
 Key         Value type                                             Description
 =========== ====================================================== ===========
-type        :ref:`String <strings>`                                The entity type. A list of all entity types can be found at on the `entity ID list <http://minecraft-ids.grahamedgecombe.com/entities>`_.
+type        :ref:`String <strings>`                                The entity type, for example *minecraft:sheep*.
 location    :ref:`Exact location <exact-locations>`                The current location.
 rotX        :ref:`Floating point <floating-points>`                The rotation around the x-axis.
 rotY        :ref:`Floating point <floating-points>`                The rotation around the y-axis.
